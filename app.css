@@ -1,0 +1,195 @@
+:root{
+  --bg-1: #0f172a;       
+  --bg-2: #071033;        
+  --card: #0b1220;
+  --primary: #7c3aed;     
+  --primary-strong: #5b21b6;
+  --accent: #06b6d4;     
+  --text: #e6eef8;
+  --muted: #9aa8bf;
+  --success: #10b981;
+  --glass: rgba(255,255,255,0.03);
+  --radius: 10px;
+  font-size: 16px;
+}
+
+* { box-sizing: border-box; }
+
+html,body{
+  height:100%;
+  margin:0;
+  padding:0;
+  background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.4;
+}
+
+/* Page layout */
+.app {
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:32px;
+}
+
+.card {
+  width:100%;
+  max-width:720px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius: var(--radius);
+  padding:28px;
+  box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Header */
+h1 {
+  margin:0 0 8px 0;
+  font-size:1.6rem;
+  letter-spacing:-0.5px;
+  color:var(--text);
+}
+
+.header-sub {
+  margin:0 0 18px 0;
+  color:var(--muted);
+  font-size:0.95rem;
+}
+
+/* Current greeting row */
+.row {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  margin-bottom:18px;
+  flex-wrap:wrap;
+}
+
+.current-label {
+  color:var(--muted);
+  font-weight:600;
+  font-size:0.95rem;
+}
+
+#currentGreeting {
+  display:inline-block;
+  background: var(--glass);
+  color: var(--text);
+  padding:8px 12px;
+  border-radius:8px;
+  font-weight:600;
+  min-width:160px;
+  text-align:center;
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,0.02);
+}
+
+/* Input + buttons area */
+.controls {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-bottom:8px;
+}
+
+input[type="text"], #newGreeting {
+  flex:1 1 260px;
+  min-width:160px;
+  padding:10px 12px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.02);
+  color:var(--text);
+  outline:none;
+  transition: box-shadow .15s ease, transform .08s ease;
+  font-size:1rem;
+}
+
+input[type="text"]::placeholder,
+#newGreeting::placeholder { color: rgba(255,255,255,0.28); }
+
+input[type="text"]:focus, #newGreeting:focus{
+  box-shadow: 0 4px 18px rgba(124,58,237,0.12);
+  border-color: rgba(124,58,237,0.9);
+  transform: translateY(-1px);
+}
+
+/* Buttons */
+.btn {
+  appearance:none;
+  border:0;
+  cursor:pointer;
+  padding:10px 14px;
+  border-radius:8px;
+  font-weight:600;
+  color:white;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-strong) 100%);
+  box-shadow: 0 6px 18px rgba(91,33,182,0.18), inset 0 -2px 0 rgba(0,0,0,0.12);
+  transition: transform .08s ease, box-shadow .12s ease, opacity .12s;
+  font-size:0.95rem;
+}
+
+.btn:active{ transform: translateY(1px) scale(.995); }
+.btn:focus{ outline: 3px solid rgba(124,58,237,0.18); outline-offset: 3px; }
+
+.btn.ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow:none;
+}
+
+/* Disabled / loading */
+.btn[disabled], .btn.disabled {
+  opacity:0.55;
+  pointer-events:none;
+  transform:none;
+  box-shadow:none;
+}
+
+/* Smaller helper text line */
+.helper {
+  color:var(--muted);
+  font-size:0.9rem;
+}
+
+/* Responsive */
+@media (max-width:520px){
+  .controls { flex-direction:column; align-items:stretch; }
+  .row { gap:8px; }
+  #currentGreeting { width:100%; text-align:left; }
+}
+
+/* Small success toast (optional) */
+.toast {
+  margin-top:14px;
+  padding:10px 12px;
+  background: linear-gradient(90deg, rgba(16,185,129,0.12), rgba(6,182,212,0.06));
+  color:var(--text);
+  border-radius:8px;
+  border:1px solid rgba(16,185,129,0.08);
+  display:inline-block;
+  font-weight:600;
+}
+
+/* Tiny spinner for inline use */
+.spinner {
+  width:16px;
+  height:16px;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,0.12);
+  border-top-color:var(--accent);
+  animation: spin 0.9s linear infinite;
+  display:inline-block;
+  vertical-align:middle;
+  margin-left:8px;
+}
+
+@keyframes spin{
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
